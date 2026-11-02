@@ -50,12 +50,14 @@ omarchy-restart-shell
 
 Only one lock plugin can be active. Check which one is active with `omarchy plugin list | grep -E "lock|obito|pain"`. To go back to the stock lock, run `omarchy plugin enable omarchy.lock`.
 
-Preview without locking:
+Preview without locking (demo mode):
 
 ```bash
 omarchy-shell lock preview
 omarchy-shell lock hidePreview
 ```
+
+The preview opens only on your biggest monitor and doesn't grab the keyboard, so you can keep working on another screen, which is handy for recording a demo. Click the avatar to trigger the effect. Any password you submit counts as wrong, so you can show the wrong-password effect; the preview never unlocks anything. Right-click closes it.
 
 ## Customising
 
@@ -73,6 +75,10 @@ omarchy-shell lock hidePreview
 I'm [Zakaria Elkhadir](https://github.com/ZakariaElkhadir), and I designed and built all three lock screens: the QML layouts, the GLSL shaders (Tsukuyomi, Amaterasu, Kamui, Shinra Tensei, Amegakure rain and the liquid glass port) and the animations that tie them together.
 
 I like shipping polished, finished things fast. This project went from idea to three complete, themed lock screens with custom shaders, media controls and recorded demos. If you like it, star the repo or reach out on GitHub. I'm always building something new.
+
+## License
+
+The code is released under the [MIT License](LICENSE). The images in `zakaria.*/assets/` are fan art and are **not** covered by it. See [LICENSE](LICENSE) for details and third-party notices.
 
 ## Credits
 

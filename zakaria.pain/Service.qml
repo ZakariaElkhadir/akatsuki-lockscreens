@@ -24,6 +24,17 @@ Item {
   property bool passwordPamConfigured: false
   property bool fingerprintConfigured: false
   property bool previewVisible: false
+  // Preview = demo mode: shown only on the biggest monitor, keyboard not
+  // grabbed, and every submitted password counts as wrong (never unlocks).
+  property string previewPassword: ""
+  property string previewFailure: ""
+  property int previewFailed: 0
+  readonly property var previewScreen: {
+    var list = Quickshell.screens, best = null
+    for (var i = 0; i < list.length; i++)
+      if (!best || list[i].width * list[i].height > best.width * best.height) best = list[i]
+    return best
+  }
   property string enteredPassword: ""
   property string pendingPassword: ""
   property string failureMessage: ""
@@ -300,11 +311,12 @@ Item {
   PanelWindow {
     id: previewWindow
     visible: root.previewVisible
+    screen: root.previewScreen
     anchors { top: true; bottom: true; left: true; right: true }
     color: "transparent"
     WlrLayershell.namespace: "omarchy-lock-preview"
     WlrLayershell.layer: WlrLayer.Overlay
-    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
     exclusionMode: ExclusionMode.Ignore
 
     LockView {
@@ -313,16 +325,23 @@ Item {
       backgroundVersion: root.backgroundVersion
       fingerprintConfigured: root.fingerprintConfigured
       authenticatingPassword: false
-      failureMessage: ""
-      failedAttempts: 0
-      inputEnabled: false
+      failureMessage: root.previewFailure
+      failedAttempts: root.previewFailed
+      inputEnabled: root.previewVisible
       loadBackground: root.previewVisible
-      passwordText: ""
+      passwordText: root.previewPassword
+      onPasswordTextEdited: function(password) { root.previewPassword = password }
+      onSubmitPassword: function(password) {
+        root.previewFailed += 1
+        root.previewFailure = "Authentication failed (" + root.previewFailed + ")"
+      }
+      onClearFailureRequested: root.previewFailure = ""
     }
 
+    // Right-click closes the preview; left clicks reach the lock view.
     MouseArea {
       anchors.fill: parent
-      acceptedButtons: Qt.LeftButton | Qt.RightButton
+      acceptedButtons: Qt.RightButton
       onClicked: root.previewVisible = false
     }
   }
@@ -551,6 +570,9 @@ Item {
     function preview(): string {
       root.refreshBackground()
       root.refreshFingerprintStatus()
+      root.previewPassword = ""
+      root.previewFailure = ""
+      root.previewFailed = 0
       root.previewVisible = true
       return "ok"
     }
