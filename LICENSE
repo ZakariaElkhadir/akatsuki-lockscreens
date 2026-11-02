@@ -19,21 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
---------------------------------------------------------------------------------
-Third-party notices
---------------------------------------------------------------------------------
-
-zakaria.*/Service.qml is derived from the omarchy.lock plugin of Omarchy
-(https://github.com/basecamp/omarchy), MIT License,
-Copyright (c) David Heinemeier Hansson.
-
-shaders/liquidglass.frag is a port of ybouane/liquidglass
-(https://github.com/ybouane/liquidglass), MIT License, Copyright (c) ybouane.
-
-Images are NOT covered by this license: the avatar and Sharingan/Mangekyo
-images in zakaria.*/assets/ are fan art owned by their respective artists, and
-Naruto characters are (c) Masashi Kishimoto / Shueisha. Replace them with your
-own artwork if you redistribute this project. The Rinnegan texture
-(zakaria.pain/assets/rinnegan.png) is drawn from scratch and is covered by this
-license.

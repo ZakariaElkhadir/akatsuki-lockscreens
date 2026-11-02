@@ -78,7 +78,7 @@ I like shipping polished, finished things fast. This project went from idea to t
 
 ## License
 
-The code is released under the [MIT License](LICENSE). The images in `zakaria.*/assets/` are fan art and are **not** covered by it. See [LICENSE](LICENSE) for details and third-party notices.
+The code is released under the [MIT License](LICENSE). The images in `zakaria.*/assets/` are fan art and are **not** covered by it. See [NOTICE](NOTICE) for third-party notices and image credits.
 
 ## Credits
 
